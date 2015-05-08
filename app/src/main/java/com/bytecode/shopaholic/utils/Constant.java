@@ -8,7 +8,9 @@ import java.util.HashMap;
 public class Constant {
 
     public static String url = "https://api.parse.com/1";
-    public static String url_login = url+"/login?";
+    public static String url_login = url + "/login?";
+    public static String signUpUrl = url + "/users";
+
 
     public static HashMap<String, String> headers = new HashMap<String, String>();
 

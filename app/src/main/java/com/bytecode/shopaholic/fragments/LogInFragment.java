@@ -1,5 +1,6 @@
 package com.bytecode.shopaholic.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.bytecode.shopaholic.R;
+import com.bytecode.shopaholic.activities.SignUpActivity;
 import com.bytecode.shopaholic.application.AppController;
 import com.bytecode.shopaholic.items.Login;
 import com.bytecode.shopaholic.items.receive.LoginInfo;
@@ -22,9 +24,6 @@ import com.bytecode.shopaholic.view.widget.CustomEditText;
 
 import java.util.HashMap;
 
-/**
- * Created by tuman on 8/5/2015.
- */
 public class LogInFragment extends Fragment implements View.OnClickListener {
 
     private View rootView;
@@ -81,13 +80,12 @@ public class LogInFragment extends Fragment implements View.OnClickListener {
                 params.put("username", username_s);
                 params.put("password", password_s);
 
-                String url=Constant.url_login+"username="+username_s+"&password="+password_s;
+                String url = Constant.url_login + "username=" + username_s + "&password=" + password_s;
 
-                ObjectRequest<LoginInfo> objectrequest = new ObjectRequest<LoginInfo>(Request.Method.GET, url, Constant.headers, null, null, new Response.Listener<LoginInfo>() {
+                ObjectRequest<LoginInfo> objectrequest = new ObjectRequest<>(Request.Method.GET, url, Constant.headers, null, null, new Response.Listener<LoginInfo>() {
                     @Override
                     public void onResponse(LoginInfo loginInfo) {
                         Toast.makeText(getActivity(), loginInfo.toString(), Toast.LENGTH_SHORT).show();
-
 
 
                     }
@@ -101,8 +99,8 @@ public class LogInFragment extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.create_account_button:
-
-
+                Intent intent = new Intent(getActivity(), SignUpActivity.class);
+                startActivity(intent);
                 break;
             case R.id.forgot_button:
 
