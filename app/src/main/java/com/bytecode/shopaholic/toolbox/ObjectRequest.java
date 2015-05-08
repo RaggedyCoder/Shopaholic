@@ -1,0 +1,84 @@
+package com.bytecode.shopaholic.toolbox;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Method;
+import java.util.Map;
+
+public class ObjectRequest<T> extends Request<T> {
+
+    private Map<String, String> headers;
+    private Map<String, String> params;
+    private Response.Listener<T> listener;
+    private Class<T> classType;
+
+    public ObjectRequest(String url, Response.ErrorListener listener, Class<T> classType) {
+        this(Method.GET, url, listener, classType);
+    }
+
+    public ObjectRequest(int method, String url, Response.ErrorListener errorListener, Class<T> classType) {
+        this(method, url, null, errorListener, classType);
+    }
+
+    public ObjectRequest(int method, String url, Response.Listener<T> listener, Response.ErrorListener errorListener, Class<T> classType) {
+        this(method, url, null, null, listener, errorListener, classType);
+    }
+
+    public ObjectRequest(int method, String url, Map<String, String> headers, Map<String, String> params, Response.Listener<T> listener, Response.ErrorListener errorListener, Class<T> classType) {
+        super(method, url, errorListener);
+        this.headers = headers;
+        this.params = params;
+        this.listener = listener;
+        this.classType = classType;
+    }
+
+    @Override
+    protected Response<T> parseNetworkResponse(NetworkResponse networkResponse) {
+
+        JSONObject jsonObject;
+        try {
+            jsonObject = new JSONObject(new String(networkResponse.data, "UTF-8"));
+        } catch (JSONException | UnsupportedEncodingException e) {
+            VolleyLog.e(e.getMessage());
+            return Response.error(new VolleyError(e));
+        }
+        Gson objectParser = new GsonBuilder().create();
+        T t;
+        try {
+            t = objectParser.fromJson(jsonObject.toString(), classType);
+        } catch (Exception e) {
+            VolleyLog.e(e.getMessage());
+            return Response.error(new VolleyError(e));
+        }
+        return Response.success(t, HttpHeaderParser.parseCacheHeaders(networkResponse));
+    }
+
+    @Override
+    protected void deliverResponse(T t) {
+        if (listener != null) {
+            listener.onResponse(t);
+        }
+    }
+
+    @Override
+    public Map<String, String> getHeaders() throws AuthFailureError {
+        return headers != null ? this.headers : super.getHeaders();
+    }
+
+    @Override
+    public Map<String, String> getParams() throws AuthFailureError {
+        return params != null ? this.params : super.getParams();
+    }
+}
