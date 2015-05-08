@@ -1,14 +1,17 @@
-package com.bytecode.shopaholic.items;
+package com.bytecode.shopaholic.items.receive;
+
+import com.bytecode.shopaholic.items.Scart;
 
 /**
  * Created by ultimate on 5/8/2015.
  */
-public class AddToCart {
+public class AddToCartInfo {
+
     Scart cart;
     Scart product;
     String quantity;
 
-    public AddToCart(Scart cart, Scart product, String quantity) {
+    public AddToCartInfo(Scart cart, Scart product, String quantity) {
         this.cart = cart;
         this.product = product;
         this.quantity = quantity;
@@ -40,7 +43,7 @@ public class AddToCart {
 
     @Override
     public String toString() {
-        return "AddToCart{" +
+        return "AddToCartInfo{" +
                 "cart=" + cart +
                 ", product=" + product +
                 ", quantity='" + quantity + '\'' +

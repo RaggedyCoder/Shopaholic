@@ -18,7 +18,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.bytecode.shopaholic.R;
 import com.bytecode.shopaholic.application.AppController;
-import com.bytecode.shopaholic.items.ResetPassword;
+import com.bytecode.shopaholic.items.AddToCart;
+import com.bytecode.shopaholic.items.Scart;
+import com.bytecode.shopaholic.items.receive.AddToCartInfo;
 import com.bytecode.shopaholic.items.receive.ProductInfo;
 import com.bytecode.shopaholic.items.receive.ResetPasswordInfo;
 import com.bytecode.shopaholic.toolbox.ObjectRequest;
@@ -116,27 +118,28 @@ public class ProductDetailsFragment extends Fragment implements View.OnClickList
                 CustomButton cancelButton = (CustomButton) dialog.findViewById(R.id.cancel_button);
 
 
-
-
-
                 // if button is clicked, close the custom dialog
                 confirmButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         // dialog.dismiss();
-                        String number=numberOfitem.getText().toString();
+                        String number = numberOfitem.getText().toString();
 
-                        ResetPassword resetpassword = new ResetPassword(number);
+                        Scart abc = new Scart("Pointer", "Cart", "cartId");
+
+                        Scart abc_2 = new Scart("Pointer", "Product", "productId");
+
+                        AddToCart AddToCart = new AddToCart(abc, abc_2, number);
                         //  signUp.setUsernamrText().toString());
                         // signUp.setPassword(password.getText().toString());
                         // signUp.setEmail(email.getText().toString());
                         Gson gson = new GsonBuilder().create();
-                        String json = gson.toJson(resetpassword);
-                        byte[] body = json.getBytes() ;
+                        String json = gson.toJson(AddToCart);
+                        byte[] body = json.getBytes();
 
-                        ObjectRequest<ResetPasswordInfo> objectRequest_reset = new ObjectRequest<>(Request.Method.POST, Constant.resetUrl, Constant.headers, null, body, new Response.Listener<ResetPasswordInfo>() {
+                        ObjectRequest<AddToCartInfo> objectRequest_reset = new ObjectRequest<>(Request.Method.POST, Constant.addUrl, Constant.headers, null, body, new Response.Listener<AddToCartInfo>() {
                             @Override
-                            public void onResponse(ResetPasswordInfo resetinfo) {
+                            public void onResponse(AddToCartInfo resetinfo) {
                                 Toast.makeText(getActivity(), resetinfo.toString(), Toast.LENGTH_SHORT).show();
 
 
@@ -146,7 +149,7 @@ public class ProductDetailsFragment extends Fragment implements View.OnClickList
                             public void onErrorResponse(VolleyError volleyError) {
 
                             }
-                        }, ResetPasswordInfo.class);
+                        }, AddToCartInfo.class);
                         AppController.getInstance().addToRequestQueue(objectRequest_reset);
 
 
