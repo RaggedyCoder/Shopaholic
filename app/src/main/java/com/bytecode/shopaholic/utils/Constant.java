@@ -11,6 +11,7 @@ public class Constant {
     public static String url_login = url + "/login?";
     public static String signUpUrl = url + "/users";
     public static String resetUrl = url + "/requestPasswordReset";
+    public static String productUrl = url + "/classes/Product?";
 
 
     public static HashMap<String, String> headers = new HashMap<String, String>();

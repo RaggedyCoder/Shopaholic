@@ -1,9 +1,12 @@
 package com.bytecode.shopaholic.items.receive;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by tuman on 8/5/2015.
  */
-public class ProductInfo {
+public class ProductInfo implements Parcelable {
 
     private String createdAt;
     private String description;
@@ -115,5 +118,15 @@ public class ProductInfo {
                 ", thumbURL='" + thumbURL + '\'' +
                 ", updatedAt='" + updatedAt + '\'' +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
 }
