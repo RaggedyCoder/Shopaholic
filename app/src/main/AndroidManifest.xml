@@ -42,6 +42,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.bytecode.shopaholic.activities.LogInActivity" />
         </activity>
+
+        <activity
+            android:name=".activities.ProductDetailsActivity"
+            android:label="@string/title_activity_product"
+            android:parentActivityName=".activities.LogInActivity" >
+
+        </activity>
     </application>
 
 </manifest>

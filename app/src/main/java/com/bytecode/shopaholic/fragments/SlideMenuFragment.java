@@ -1,6 +1,7 @@
 package com.bytecode.shopaholic.fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,12 +9,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.bytecode.shopaholic.R;
+import com.bytecode.shopaholic.activities.LogInActivity;
 import com.bytecode.shopaholic.adapters.SlideMenuAdapter;
 import com.bytecode.shopaholic.adapters.items.Item;
 import com.bytecode.shopaholic.adapters.items.SlideMenuItem;
+import com.bytecode.shopaholic.appdata.AppManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +47,18 @@ public class SlideMenuFragment extends Fragment {
         header = inflater.inflate(R.layout.profile_view, null, false);
         menuList = (ListView) rootView.findViewById(R.id.menu_list);
         menuList.setAdapter(listAdapter);
+        menuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position + 1 == listAdapter.getCount()) {
+                    AppManager appManager = new AppManager(getActivity());
+                    appManager.setSessionId("");
+                    Intent intent = new Intent(getActivity(), LogInActivity.class);
+                    getActivity().finish();
+                    startActivity(intent);
+                }
+            }
+        });
         return rootView;
     }
 

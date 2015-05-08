@@ -33,6 +33,19 @@ public class ProductInfo implements Parcelable {
         this.updatedAt = updatedAt;
     }
 
+    public ProductInfo(Parcel in) {
+        this.createdAt = in.readString();
+        this.description = in.readString();
+        this.imageURL = in.readString();
+        this.name = in.readString();
+        this.objectId = in.readString();
+        this.price = in.readString();
+        this.query = in.readString();
+        this.thumbURL = in.readString();
+        this.updatedAt = in.readString();
+
+    }
+
     public String getCreatedAt() {
         return createdAt;
     }
@@ -120,6 +133,16 @@ public class ProductInfo implements Parcelable {
                 '}';
     }
 
+    public static final Parcelable.Creator<ProductInfo> CREATOR = new Parcelable.Creator<ProductInfo>() {
+        public ProductInfo createFromParcel(Parcel in) {
+            return new ProductInfo(in);
+        }
+
+        public ProductInfo[] newArray(int size) {
+            return new ProductInfo[size];
+        }
+    };
+
     @Override
     public int describeContents() {
         return 0;
@@ -127,6 +150,15 @@ public class ProductInfo implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.getCreatedAt());
+        dest.writeString(this.getDescription());
+        dest.writeString(this.getImageURL());
+        dest.writeString(this.getName());
+        dest.writeString(this.getObjectId());
+        dest.writeString(this.getPrice());
+        dest.writeString(this.getQuery());
+        dest.writeString(this.getThumbURL());
+        dest.writeString(this.getUpdatedAt());
 
     }
 }

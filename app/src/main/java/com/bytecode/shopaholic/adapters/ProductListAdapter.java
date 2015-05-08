@@ -71,6 +71,10 @@ public class ProductListAdapter extends BaseAdapter {
         return convertView;
     }
 
+    public List<ProductInfo> getProductInfos() {
+        return productInfos;
+    }
+
     public void addMore(List<ProductInfo> productInfos) {
         this.productInfos.addAll(productInfos);
         notifyDataSetChanged();

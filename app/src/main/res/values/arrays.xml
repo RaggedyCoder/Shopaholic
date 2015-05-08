@@ -2,12 +2,10 @@
 <resources>
 
     <string-array name="nav_drawer_items">
-        <item>blood_feed</item>
-        <item>blood_request</item>
+        <item>Menu</item>
         <item>profile</item>
-        <item>settings</item>
-        <item>feedback</item>
-        <item>about_us</item>
+        <item>Cart</item>
+        <item>log out</item>
     </string-array>
 
     <array name="nav_drawer_icons">
