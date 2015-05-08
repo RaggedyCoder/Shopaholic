@@ -7,7 +7,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
-import com.bytecode.practiceapp.utils.LruBitmapCache;
+import com.bytecode.shopaholic.utils.LruBitmapCache;
 
 /**
  * Created by tuman on 7/5/2015.

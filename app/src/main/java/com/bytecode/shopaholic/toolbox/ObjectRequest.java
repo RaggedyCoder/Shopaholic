@@ -14,13 +14,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Method;
 import java.util.Map;
 
 public class ObjectRequest<T> extends Request<T> {
 
     private Map<String, String> headers;
     private Map<String, String> params;
+    private byte[] body;
     private Response.Listener<T> listener;
     private Class<T> classType;
 
@@ -33,13 +33,14 @@ public class ObjectRequest<T> extends Request<T> {
     }
 
     public ObjectRequest(int method, String url, Response.Listener<T> listener, Response.ErrorListener errorListener, Class<T> classType) {
-        this(method, url, null, null, listener, errorListener, classType);
+        this(method, url, null, null, null, listener, errorListener, classType);
     }
 
-    public ObjectRequest(int method, String url, Map<String, String> headers, Map<String, String> params, Response.Listener<T> listener, Response.ErrorListener errorListener, Class<T> classType) {
+    public ObjectRequest(int method, String url, Map<String, String> headers, Map<String, String> params, byte[] body, Response.Listener<T> listener, Response.ErrorListener errorListener, Class<T> classType) {
         super(method, url, errorListener);
         this.headers = headers;
         this.params = params;
+        this.body = body;
         this.listener = listener;
         this.classType = classType;
     }
@@ -80,5 +81,10 @@ public class ObjectRequest<T> extends Request<T> {
     @Override
     public Map<String, String> getParams() throws AuthFailureError {
         return params != null ? this.params : super.getParams();
+    }
+
+    @Override
+    public byte[] getBody() throws AuthFailureError {
+        return body != null ? this.body : super.getBody();
     }
 }

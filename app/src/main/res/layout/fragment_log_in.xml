@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@drawable/log_in_screen" />
+
+    <ImageView
+        android:id="@+id/shopping_image_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="centerCrop"
+        android:src="#220084f5" />
+
+    <LinearLayout
+        android:id="@+id/log_in_container"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <com.bytecode.shopaholic.view.widget.CustomTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Klassify"
+            android:textColor="#FAFAFA"
+            android:textSize="40sp"
+            app:font="RobotoCondensed-Light.ttf" />
+
+        <com.bytecode.shopaholic.view.widget.CustomEditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/text_input_background"
+            android:hint="User Name"
+            android:padding="10dip"
+            android:textColor="#1A1A1A"
+            android:textColorHint="#dd1A1A1A"
+            android:textSize="17sp"
+            app:font="RobotoCondensed-Light.ttf" />
+
+        <com.bytecode.shopaholic.view.widget.CustomEditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/text_input_background"
+            android:hint="Password"
+            android:inputType="textWebPassword"
+            android:padding="10dip"
+            android:textColor="#1A1A1A"
+            android:textColorHint="#dd1A1A1A"
+            android:textSize="17sp"
+            app:font="RobotoCondensed-Light.ttf" />
+
+        <com.bytecode.shopaholic.view.widget.CustomButton
+            android:id="@+id/login_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/log_in_container"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp"
+            android:background="@drawable/green_holo_button"
+            android:text="Log In"
+            android:textColor="@drawable/btn_holo_text"
+            android:textSize="16sp"
+            app:font="Roboto-Light.ttf" />
+    </LinearLayout>
+
+    <com.bytecode.shopaholic.view.widget.CustomButton
+        android:id="@+id/forgot_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/log_in_container"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/transparent"
+        android:text="Forgot your Password?"
+        android:textColor="@drawable/btn_holo_text"
+        android:textSize="16sp"
+        app:font="Roboto-Light.ttf" />
+
+    <com.bytecode.shopaholic.view.widget.CustomButton
+        android:id="@+id/create_account_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/forgot_button"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/transparent"
+        android:text="Create Account"
+        android:textColor="@drawable/btn_holo_text"
+        android:textSize="16sp"
+        app:font="Roboto-Light.ttf" />
+</RelativeLayout>
