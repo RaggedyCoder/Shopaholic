@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,9 +23,6 @@ import com.bytecode.shopaholic.view.widget.CustomEditText;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-/**
- * Created by tuman on 8/5/2015.
- */
 public class SignUpFragment extends Fragment implements View.OnClickListener, Response.Listener<SignUpInfo>, Response.ErrorListener {
 
     private View rootView;
@@ -48,7 +46,8 @@ public class SignUpFragment extends Fragment implements View.OnClickListener, Re
         password = (CustomEditText) rootView.findViewById(R.id.password);
         confirmPassword = (CustomEditText) rootView.findViewById(R.id.confirm_password);
         signUpButton = (CustomButton) rootView.findViewById(R.id.sign_up_button);
-        return super.onCreateView(inflater, container, savedInstanceState);
+        signUpButton.setOnClickListener(this);
+        return rootView;
     }
 
     @Override
@@ -68,7 +67,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener, Re
 
     @Override
     public void onResponse(SignUpInfo signUpInfo) {
-
+        Log.e("TAG", signUpInfo.toString());
     }
 
     @Override
