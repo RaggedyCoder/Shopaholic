@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -48,7 +50,8 @@ public class SignUpFragment extends Fragment implements View.OnClickListener, Re
         password = (CustomEditText) rootView.findViewById(R.id.password);
         confirmPassword = (CustomEditText) rootView.findViewById(R.id.confirm_password);
         signUpButton = (CustomButton) rootView.findViewById(R.id.sign_up_button);
-        return super.onCreateView(inflater, container, savedInstanceState);
+        signUpButton.setOnClickListener(this);
+        return rootView;
     }
 
     @Override
@@ -68,6 +71,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener, Re
 
     @Override
     public void onResponse(SignUpInfo signUpInfo) {
+        Toast.makeText(getActivity(),"DONE", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -81,7 +85,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener, Re
                 signUp.setEmail(email.getText().toString());
                 Gson gson = new GsonBuilder().create();
                 String json = gson.toJson(signUp);
-                byte[] body = json.getBytes();
+                byte[] body = json.getBytes() ;
                 ObjectRequest<SignUpInfo> objectRequest = new ObjectRequest<>(Request.Method.POST, Constant.signUpUrl, Constant.headers, null, body, this, this, SignUpInfo.class);
                 AppController.getInstance().addToRequestQueue(objectRequest);
                 break;
