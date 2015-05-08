@@ -24,12 +24,12 @@ public class AppManager {
         return this.activity.getSharedPreferences(prefName, mode);
     }
 
-    private void setSessionId(String sessionToken) {
+    public void setSessionId(String sessionToken) {
         editor.putString(KEY_SESSION_ID, sessionToken);
         editor.apply();
     }
 
-    private String getSessionToken() {
+    public String getSessionToken() {
         return mSharedPreferences.getString(KEY_SESSION_ID, "");
     }
 }

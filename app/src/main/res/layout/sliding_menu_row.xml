@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/background"
+    android:layout_width="wrap_content"
+    android:layout_height="56dp"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:contentDescription="@null"
+        android:paddingLeft="16dp"
+        android:src="@drawable/ic_about_black_24dp" />
+
+    <com.bytecode.shopaholic.view.widget.CustomTextView
+        android:id="@+id/slideMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:paddingBottom="20dp"
+        android:paddingLeft="56dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dip"
+        android:text="item"
+        android:textColor="#282828"
+        android:textSize="17sp"
+        android:textStyle="normal"
+        app:font="Roboto-Regular.ttf" />
+
+</RelativeLayout>

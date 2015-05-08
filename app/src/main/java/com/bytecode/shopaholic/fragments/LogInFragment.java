@@ -13,7 +13,9 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.bytecode.shopaholic.R;
+import com.bytecode.shopaholic.activities.ProductActivity;
 import com.bytecode.shopaholic.activities.SignUpActivity;
+import com.bytecode.shopaholic.appdata.AppManager;
 import com.bytecode.shopaholic.application.AppController;
 import com.bytecode.shopaholic.items.Login;
 import com.bytecode.shopaholic.items.receive.LoginInfo;
@@ -39,11 +41,7 @@ public class LogInFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_log_in, container, false);
-
-
         initial_ui();
-
-
         return rootView;
     }
 
@@ -74,7 +72,7 @@ public class LogInFragment extends Fragment implements View.OnClickListener {
                 username_s = username.getText().toString();
                 password_s = password.getText().toString();
 
-                Login login = new Login(username_s, password_s);
+                final Login login = new Login(username_s, password_s);
 
                 HashMap<String, String> params = new HashMap<String, String>();
                 params.put("username", username_s);
@@ -85,14 +83,21 @@ public class LogInFragment extends Fragment implements View.OnClickListener {
                 ObjectRequest<LoginInfo> objectrequest = new ObjectRequest<>(Request.Method.GET, url, Constant.headers, null, null, new Response.Listener<LoginInfo>() {
                     @Override
                     public void onResponse(LoginInfo loginInfo) {
-                        Toast.makeText(getActivity(), loginInfo.toString(), Toast.LENGTH_SHORT).show();
+                        if (loginInfo.getCode() != null || loginInfo.getCode() != "null") {
+                            AppManager appManager = new AppManager(getActivity());
+                            appManager.setSessionId(loginInfo.getSessionToken());
+                            Toast.makeText(getActivity(), loginInfo.toString(), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getActivity(), ProductActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(getActivity(), "Invalid username or password", Toast.LENGTH_LONG).show();
+                        }
 
 
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
-
                     }
                 }, LoginInfo.class);
                 AppController.getInstance().addToRequestQueue(objectrequest);

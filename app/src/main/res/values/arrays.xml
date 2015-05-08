@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="nav_drawer_items">
+        <item>blood_feed</item>
+        <item>blood_request</item>
+        <item>profile</item>
+        <item>settings</item>
+        <item>feedback</item>
+        <item>about_us</item>
+    </string-array>
+
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_about_black_24dp</item>
+        <item>@drawable/ic_about_black_24dp</item>
+        <item>@drawable/ic_about_black_24dp</item>
+        <item>@drawable/ic_about_black_24dp</item>
+        <item>@drawable/ic_about_black_24dp</item>
+        <item>@drawable/ic_about_black_24dp</item>
+    </array>
+</resources>
